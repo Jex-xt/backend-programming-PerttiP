@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class HelloController {
+public class Exercise1Controller {
     @GetMapping("/hello")
     public String helloAge(@RequestParam(name = "name") String name, @RequestParam(name = "age") int age, Model model) {
         if (age > 18) {
