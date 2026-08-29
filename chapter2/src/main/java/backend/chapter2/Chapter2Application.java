@@ -1,4 +1,4 @@
-package backend.chapter_2;
+package backend.chapter2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
