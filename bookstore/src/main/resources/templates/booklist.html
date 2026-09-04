@@ -3,14 +3,19 @@
 <head>
     <title>Listpage</title>
     <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-    <table>
+    <h1>Books</h1>
+    <table class="table table-striped">
         <tr>
             <th>Title</th>
             <th>Author</th>
             <th>ISBN</th>
             <th>Year</th>
+            <th></th>
+            <th></th>
+
         </tr>
 
         <tr th:each="book : ${books}">
@@ -19,13 +24,13 @@
             <td th:text="${book.isbn}"></td>
             <td th:text="${book.publicationYear}"></td>
             <td>
-                <a th:href="@{/delete/{id}(id=${book.id})}">Delete</a>
+                <a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a>
             </td>
             <td>
-                <a th:href="@{/edit/{id}(id=${book.id})}">Edit</a>
+                <a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a>
             </td>
         </tr>
     </table>
-    <a th:href="@{/addbook}">Add Book</a>
+    <a th:href="@{/addbook}" class="btn btn-success">Add Book</a>
 </body>
 </html>    
