@@ -38,7 +38,7 @@ public class BookRestController {
 		@DeleteMapping("/books/{id}")
 		public Iterable<Book> deleteById(@PathVariable("id") Long bookId) {
 			bookRepository.deleteById(bookId);
-		 	return bookRepository.findAll();  //Listataan lopuksi "Muokattu" lista
+		 	return bookRepository.findAll();  //Tulostetaan lopuksi "Muokattu" lista
 		}
 
 		@PutMapping("/books/{id}")

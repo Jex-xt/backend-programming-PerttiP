@@ -3,20 +3,57 @@
 <head>
     <title>addbook</title>
     <meta charset="UTF-8">
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
 </head>
 <body>
     <h1>Add new book</h1>
 <div>
 <form th:object="${book}" th:action="@{/save}" action="#" method="post">
-	<label for="title">Title:</label>
-	<input type="text" id="title" th:field="*{title}" />
-	<label for="author">Author:</label>
-	<input type="text" id="author" th:field="*{author}" />
-	<label for="isbn">ISBN:</label>
-	<input type="text" id="isbn" th:field="*{isbn}" />
-    <label for="publicationYear">Year:</label> <!-- Nollan saa pois lomakkeesta muuttamalla Book luokassa publicationYear tyypiksi Integer --> 
-	<input type="number" id="publicationYear" th:field="*{publicationYear}" />
-	<input type="submit" value="Save" />
+	<div>
+		<label for="title">Title:</label>
+		<input type="text" id="title" th:field="*{title}" />
+		<div th:if="${#fields.hasErrors('title')}"
+			th:errors="*{title}"
+			 class="text-danger">
+		</div>
+	</div>	
+	<div>
+		<label for="author">Author:</label>
+		<input type="text" id="author" th:field="*{author}" />
+		<div th:if="${#fields.hasErrors('author')}"
+			th:errors="*{author}"
+			 class="text-danger">
+		</div>
+	</div>
+	<div>
+		<label for="isbn">ISBN:</label>
+		<input type="text" id="isbn" th:field="*{isbn}" />
+		<div th:if="${#fields.hasErrors('isbn')}"
+			th:errors="*{isbn}"
+			 class="text-danger">
+		</div>
+	</div>
+	<div>
+		<label for="publicationYear">Year:</label> <!-- Nollan saa pois lomakkeesta muuttamalla Book luokassa publicationYear tyypiksi Integer --> 
+		<input type="number" id="publicationYear" th:field="*{publicationYear}" />
+		<div th:if="${#fields.hasErrors('publicationYear')}"
+			th:errors="*{publicationYear}"
+			 class="text-danger">
+		</div>
+	</div>
+	<div>
+		<label for="category">Category:</label>
+		<select id="category" th:field="*{category.id}">
+			<option th:each="category: ${categories}"
+				th:value="${category.id}"
+				th:text="${category.name}">
+			</option>
+		</select>
+	</div>
+	<div>
+		<input type="submit" value="Save"  />
+	</div>
 </form>
 
 </div>

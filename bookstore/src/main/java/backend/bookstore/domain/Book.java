@@ -5,6 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Book {
@@ -12,8 +16,20 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String title, author, isbn;
+    @NotBlank(message = "Syötä otsikko")
+    private String title;
+
+    @NotBlank(message = "Syötä tekijä")
+    private String author;
+
+    @NotBlank (message = "Syötä isbn")
+    private String isbn;
+
+    @Min(value = 1500, message = "Vuosiluku täytyy olla vähintään 1500")
+    @Max(value = 2026, message = "Vuosiluku täytyy olla 2026 tai pienempi")
     private int publicationYear;
+
+    //@Positive(message = "Summa täytyy olla suurempi kuin 0")
     private double price;
 
     @ManyToOne
