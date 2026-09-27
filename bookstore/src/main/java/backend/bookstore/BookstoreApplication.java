@@ -9,6 +9,8 @@ import backend.bookstore.domain.Book;
 import backend.bookstore.domain.BookRepository;
 import backend.bookstore.domain.Category;
 import backend.bookstore.domain.CategoryRepository;
+import backend.bookstore.domain.User;
+import backend.bookstore.domain.UserRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -18,7 +20,7 @@ public class BookstoreApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(BookRepository repository, CategoryRepository categoryRepository) {
+    public CommandLineRunner demo(BookRepository repository, CategoryRepository categoryRepository, UserRepository userRepository) {
 	return (args) -> {
 	  // Your code...add some demo data to db
         Category category1 = new Category("Programming");
@@ -36,6 +38,14 @@ public class BookstoreApplication {
         repository.save(book2);
         repository.save(book3);
         repository.save(book4);
-	};
-}
+
+        User user1 =new User("Kalle", "$2a$10$WcWpFoNI3GSUIcq/8V/gg.vC.uUO6I5fc5/SUujMQ/rVqbyGhMty2", "kalle.j@kallela.com", "ADMIN");
+        User user2 =new User("Aapo",  "$2a$10$koxVJcS.nmNz7KyYCs4WNO57SAL/nsC85Cpv/VnELxdMYpdVv.leC", "aapo.hh@aapola.com", "USER");
+        User user3 =new User("Heli", "$2a$10$koxVJcS.nmNz7KyYCs4WNO57SAL/nsC85Cpv/VnELxdMYpdVv.leC", "heli.o@helila.com", "USER");
+        userRepository.save(user1);
+        userRepository.save(user2);
+        userRepository.save(user3);
+        };
+
+    }
 }
