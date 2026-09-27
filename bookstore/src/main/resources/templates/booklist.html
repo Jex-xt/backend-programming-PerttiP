@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Listpage</title>
     <meta charset="UTF-8">
@@ -7,6 +8,13 @@
 </head>
 <body>
     <h1>Books</h1>
+    <p class="text-center">
+    Hello <span sec:authentication="name"></span>!
+    </p>
+    <form th:action="@{/logout}" method="post" style="margin-bottom: 15px;">
+        <input type="submit" value="Sign Out"/>
+    </form>
+
     <table class="table table-striped">
         <tr>
             <th>Title</th>
@@ -26,7 +34,7 @@
             <td th:text="${book.publicationYear}"></td>
             <td th:text="${book.category.name}"></td>
 
-            <td>
+            <td sec:authorize="hasRole('ADMIN')">
                 <a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a>
             </td>
             <td>

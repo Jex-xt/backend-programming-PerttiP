@@ -3,6 +3,7 @@ package backend.bookstore.domain;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -48,9 +49,17 @@ public class Category {
         this.name = name;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
     @Override
     public String toString() {
-        return "Category [id=" + id + ", name=" + name + "]";
+        return "Category [id=" + id + ", name=" + name + ", books=" + books + "]";
     }
     
 }
