@@ -9,8 +9,8 @@ import backend.bookstore.domain.Book;
 import backend.bookstore.domain.BookRepository;
 import backend.bookstore.domain.Category;
 import backend.bookstore.domain.CategoryRepository;
-import backend.bookstore.domain.User;
-import backend.bookstore.domain.UserRepository;
+import backend.bookstore.domain.AppUser;
+import backend.bookstore.domain.AppUserRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -19,7 +19,7 @@ public class BookstoreApplication {
         SpringApplication.run(BookstoreApplication.class, args);
     }
 
-    @Bean
+    /* @Bean
     public CommandLineRunner demo(BookRepository repository, CategoryRepository categoryRepository, UserRepository userRepository) {
 	return (args) -> {
 	  // Your code...add some demo data to db
@@ -47,5 +47,5 @@ public class BookstoreApplication {
         userRepository.save(user3);
         };
 
-    }
+    } */
 }

@@ -8,8 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "endusers")
-public class User {
+@Table(name = "appusers")
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
@@ -27,10 +27,10 @@ public class User {
    @Column(name = "role", nullable = false)
     private String role;
 
-    public User() {
+    public AppUser() {
     }
     
-   public User(String username, String password, String email, String role) {
+   public AppUser(String username, String password, String email, String role) {
     this.username = username;
     this.password = password;
     this.email = email;

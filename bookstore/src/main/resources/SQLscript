@@ -1,0 +1,44 @@
+DROP TABLE IF EXISTS book;
+DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS appusers;
+
+CREATE TABLE  appusers(
+    id BIGSERIAL PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    role VARCHAR(100) NOT NULL
+);    
+
+INSERT INTO appusers (username, password, email, role)
+VALUES    
+('Kalle', '$2a$10$WcWpFoNI3GSUIcq/8V/gg.vC.uUO6I5fc5/SUujMQ/rVqbyGhMty2', 'kalle.j@kallela.com', 'ADMIN'),
+('Aapo', '$2a$10$koxVJcS.nmNz7KyYCs4WNO57SAL/nsC85Cpv/VnELxdMYpdVv.leC', 'aapo.hh@aapola.com', 'USER'),
+('Heli', '$2a$10$koxVJcS.nmNz7KyYCs4WNO57SAL/nsC85Cpv/VnELxdMYpdVv.leC', 'heli.o@helila.com', 'USER');
+
+CREATE TABLE category (
+     id BIGSERIAL PRIMARY KEY,
+     name VARCHAR(100) NOT NULL
+);
+
+INSERT INTO category (name)
+VALUES
+('Programming'),
+('Health'),
+('Humor');
+
+CREATE TABLE book (
+    id BIGSERIAL PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    isbn VARCHAR(100) NOT NULL,
+    publication_year INT,
+    category_id BIGINT REFERENCES category(id)
+);
+
+INSERT INTO book (title, author, isbn, publication_year, category_id)
+VALUES
+('Suuri koodaus kirja', 'Kalle Koodari', '978123456789-7', 1999, 1),
+('Pieni koodaus kirja', 'Niko Nörtti', '97898765432-10', 2004, 1),
+('Kuinka lihoa koodaamalla', 'Sarja Syömäri', '978111222333-4', 2024, 3),
+('Näin laihdut koodaamalla', 'Lasse Laihduttaja', '97855566677-78', 2026, 2);

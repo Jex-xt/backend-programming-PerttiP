@@ -6,20 +6,20 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import backend.bookstore.domain.User;
-import backend.bookstore.domain.UserRepository;
+import backend.bookstore.domain.AppUser;
+import backend.bookstore.domain.AppUserRepository;
 
 @Service 
 public class UserDetailsServiceImpl implements UserDetailsService  {
-	private final UserRepository repository; 
+	private final AppUserRepository repository; 
 
-    public UserDetailsServiceImpl(UserRepository userRepository) {
-	this.repository = userRepository;
+    public UserDetailsServiceImpl(AppUserRepository repository) {
+	this.repository = repository;
 	}
 
     @Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User curruser = repository.findByUsername(username);
+		AppUser curruser = repository.findByUsername(username);
 			if (curruser == null) {
 			throw new UsernameNotFoundException(username + " Käyttäjää ei löydy");
 			}

@@ -34,7 +34,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             <td th:text="${book.publicationYear}"></td>
             <td th:text="${book.category.name}"></td>
 
-            <td sec:authorize="hasRole('ADMIN')">
+            <td sec:authorize="hasAuthority('ADMIN')">
                 <a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a>
             </td>
             <td>

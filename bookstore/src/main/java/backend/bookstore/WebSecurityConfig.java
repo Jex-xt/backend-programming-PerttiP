@@ -16,7 +16,7 @@ public class WebSecurityConfig {
             .requestMatchers("/css/**").permitAll() //css toimii ennen kirjautumista
             .requestMatchers("/api/**").permitAll()
             .requestMatchers("/h2-console/**").permitAll()
-            .requestMatchers("/delete/**").hasRole("ADMIN") //delete vaatii afmin oikeudet
+            .requestMatchers("/delete/**").hasAuthority("ADMIN") //delete vaatii afmin oikeudet
             .anyRequest().authenticated())  //Kaikki pyynnöt vaatii kirjautumisen
             .httpBasic(Customizer.withDefaults())
             .headers(headers -> 
