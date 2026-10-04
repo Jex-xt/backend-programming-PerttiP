@@ -1,5 +1,5 @@
 # Build-vaihe
-FROM eclipse-temurin:21-jdk-focal AS builder
+FROM eclipse-temurin:21-jdk AS builder
 
 WORKDIR /opt/app
 
