@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html
+    lang="fi"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Jäsenhallinta</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>HuittMP – Jäsenhallinta</h1>
+
+        <form th:action="@{/logout}" method="post" class="float-end">
+        <button type="submit" class="btn btn-secondary">Kirjaudu ulos</button>
+        </form>
+
+        <h4 class="mb-5">Jäsenlista</h4> 
+
+        <div class="text-start mb-3">
+            <a th:href="@{/admin/lisaa}" class="btn btn-success">Lisää uusi jäsen</a>
+        </div>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Etunimi</th>
+                    <th>Sukunimi</th>
+                    <th>Ylläpitäjä</th>
+                    <th>Toiminnot</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="jasen : ${jasenet}">
+                    <td th:text="${jasen.id}"></td>
+                    <td th:text="${jasen.etunimi}"></td>
+                    <td th:text="${jasen.sukunimi}"></td>
+                    <td>
+                        <span th:if="${jasen.yllapitaja}" class="text-success">✔</span>
+                        <span th:unless="${jasen.yllapitaja}">-</span>
+                    </td>
+                    <td>
+                        <div class="d-flex gap-3">
+                            <a th:href="@{/admin/jasen/{id}(id=${jasen.id})}" class="btn btn-info">Näytä</a>
+                            <a th:href="@{/admin/muokkaa/{id}(id=${jasen.id})}" class="btn btn-primary">Muokkaa</a>
+                        </div>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+     </div>
+
+</body>
+</html>

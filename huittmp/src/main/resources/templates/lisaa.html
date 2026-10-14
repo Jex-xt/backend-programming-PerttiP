@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html
+    lang="fi"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Lisää uusi jäsen</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>HuittMP – Jäsenhallinta</h1>
+        <h4>Lisää uusi jäsen</h4>
+
+        <form th:object="${jasen}" th:action="@{/admin/lisaa}" method="post" novalidate>
+            <div class="mb-3">
+                <label for="etunimi" class="form-label">Etunimi:</label>
+                <input type="text" id="etunimi" th:field="*{etunimi}" class="form-control">
+                <div class="text-danger" th:errors="*{etunimi}"></div>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="sukunimi" class="form-label">Sukunimi:</label>
+                <input type="text" id="sukunimi" th:field="*{sukunimi}" class="form-control">
+                <div class="text-danger" th:errors="*{sukunimi}"></div>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Sähköposti:</label>
+                <input type="email" id="email" th:field="*{email}" class="form-control" onblur="this.value = this.value.trim()">
+                <div class="text-danger" th:errors="*{email}"></div>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="puhelinnumero" class="form-label">Puhelinnumero:</label>
+                <input type="tel" id="puhelinnumero" th:field="*{puhelinnumero}" class="form-control">
+                <div class="text-danger" th:errors="*{puhelinnumero}"></div>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="liittymispaiva" class="form-label">Liittymispäivä:</label>
+                <input type="date" id="liittymispaiva" th:field="*{liittymispaiva}" class="form-control">
+                <div class="text-danger" th:errors="*{liittymispaiva}"></div>
+   
+            </div>
+
+            <div class="mb-3">
+                <label for="salasana" class="form-label">Salasana:</label>
+                <input type="password" id="salasana" th:field="*{salasana}" class="form-control">
+                <div class="text-danger" th:errors="*{salasana}"></div>
+            </div>
+
+            <div>
+                <a th:href="@{/admin}"class="btn btn-secondary">Peruuta</a>
+		        <button type="submit" class="btn btn-success">Tallenna uusi jäsen</button>
+	        </div>
+        </form>    
+    </div>    
+</body>
+</html>  

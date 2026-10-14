@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html
+    lang="fi"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Muokkaa jäsen</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>HuittMP – Jäsenhallinta</h1>
+        <h4>Jäsenen tietojen muokkaus</h4>
+
+    <div class="text-end mb-3">    
+        <form th:action="@{/admin/poista/{id}(id=${jasen.id})}"
+            th:attr="data-nimi=|${jasen.etunimi} ${jasen.sukunimi}|"
+            method="post"
+            onsubmit="return confirm('Haluatko varmasti poistaa jäsenen ' + this.dataset.nimi + ' ja kaikki hänen tietonsa?');">
+            <button type="submit" class="btn btn-danger">Poista jäsen</button>
+        </form>
+    </div>
+    
+
+        <form th:object="${jasen}" th:action="@{/admin/muokkaa/{id}(id=${jasen.id})}" method="post" novalidate>
+            <div class="mb-3">
+                <label for="etunimi" class="form-label">Etunimi:</label>
+                <input type="text" id="etunimi" th:field="*{etunimi}" class="form-control">
+                <div class="text-danger" th:errors="*{etunimi}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="sukunimi" class="form-label">Sukunimi:</label>
+                <input type="text" id="sukunimi" th:field="*{sukunimi}" class="form-control">
+                <div class="text-danger" th:errors="*{sukunimi}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Sähköposti:</label>
+                <input type="email" id="email" th:field="*{email}" class="form-control" onblur="this.value = this.value.trim()">
+                <div class="text-danger" th:errors="*{email}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="puhelinnumero" class="form-label">Puhelinnumero:</label>
+                <input type="tel" id="puhelinnumero" th:field="*{puhelinnumero}" class="form-control">
+                <div class="text-danger" th:errors="*{puhelinnumero}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="liittymispaiva" class="form-label">Liittymispäivä:</label>
+                <input type="date" id="liittymispaiva" th:field="*{liittymispaiva}" class="form-control">
+                <div class="text-danger" th:errors="*{liittymispaiva}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="uusiSalasana" class="form-label">Uusi salasana:</label>
+                <input type="password" id="uusiSalasana" name="uusiSalasana" class="form-control">
+                <div class="form-text">Jätä tyhjäksi, jos salasanaa ei vaihdeta!</div>
+                <div class="text-danger" th:errors="*{salasana}"></div>
+            </div>
+
+
+            <div class="form-check mb-3">
+                 <label for="yllapitaja" class="form-check-label">Ylläpitäjä:</label>
+                 <input type="checkbox" id="yllapitaja" th:field="*{yllapitaja}" class="form-check-input">
+            </div>
+
+            <div>
+                <a th:href="@{/admin}"class="btn btn-secondary">Peruuta</a>
+		        <button type="submit" class="btn btn-success">Tallenna muutokset</button>
+	        </div>
+        </form>    
+    </div>    
+</body>
+</html>  
