@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface JasenRooliRepository extends JpaRepository<JasenRooli, Long> {
 
         List<JasenRooli> findByJasenId(Long jasenId);
+        List<JasenRooli> findByRooliId(Long rooliId); //JPA testausta varten
+        
 }
