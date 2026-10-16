@@ -13,7 +13,7 @@ import jakarta.validation.constraints.NotBlank;
  * Vastaa tietokannan roolit-taulua.
  */
 @Entity 
-@Table(name = "roolit") //Tiedot ovat roolit taulussa
+@Table(name = "roolit")
 public class Rooli {
 
     @Id //Pääavain

@@ -24,13 +24,15 @@ public class JasenMaksu {
     @Column(name = "jasen_maksu_id", nullable = false, updatable = false)
     private Long id;
 
+    //Samalla jasen_id:llä voi olla useita jasen_maksut merkintöjä.
     @ManyToOne
-    @JoinColumn(name = "jasen_id", nullable = false) //Vierasavain
-    private Jasen jasen; //Viitataan Jasen-entiteettiin
+    @JoinColumn(name = "jasen_id", nullable = false) //Vierasavain jasenet-tauluun
+    private Jasen jasen; 
 
+    //Samalla maksu_id:llä voi olla useita jasen_maksut merkintöjä.
     @ManyToOne
-    @JoinColumn(name = "maksu_id", nullable = false) //Vierasavain
-    private Maksu maksu; //Viitataan Maksu-entiteettiin
+    @JoinColumn(name = "maksu_id", nullable = false) //Vierasavain maksut-tauluun
+    private Maksu maksu; 
 
     @Column(name = "maksettu", nullable = false)
     private boolean maksettu;

@@ -25,19 +25,21 @@ public class JasenRooli {
     @Column(name = "jasen_rooli_id", nullable = false, updatable = false)
     private Long id;
 
-    @ManyToOne  //Useampi jasen_roolit-taulun merkintä voi viitata samaan Jasen olioon.
-    @JoinColumn(name = "jasen_id", nullable = false)  //Vierasavain 
-    private Jasen jasen; //Viitataan Jasen-entiteettiin
+    //Samalla jasen_id:llä voi olla useita jasen_rooli merkintöjä.
+    @ManyToOne
+    @JoinColumn(name = "jasen_id", nullable = false)  //Vierasavain jasenet-tauluun
+    private Jasen jasen;
 
-    @ManyToOne  //Useampi jasen_roolit-taulun merkintä voi viitata samaan Rooli olioon.
-    @JoinColumn (name ="rooli_id", nullable = false)  //Vierasavain 
-    private Rooli rooli; //Viitataan Rooli-entiteettiin
+    //Samalla rooli_id:llä voi olla useita jasen_rooli merkintöjä.
+    @ManyToOne
+    @JoinColumn (name ="rooli_id", nullable = false)  //Vierasavain roolit-tauluun
+    private Rooli rooli;
 
     @Column(name = "alkupaiva", nullable = false)
     private LocalDate alkupaiva;
 
     @Column(name = "loppupaiva")
-    private LocalDate loppupaiva;
+    private LocalDate loppupaiva; 
 
     public JasenRooli() {  // JPA:n tarvitsema parametriton konstruktori
     }

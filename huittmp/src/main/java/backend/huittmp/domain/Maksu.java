@@ -10,11 +10,13 @@ import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 
 /**
- * Yhdistyksen jäsenten vuosittaiset ja kausittaiset maksut.
+ * Määrittää yhdistyksen maksutyypit ja niiden maksukaudet.
  * Vastaa tietokannan maksut-taulua.
  */
+
+//Tiedot ovat maksut taulussa. Maksun_nimi ja maksu_kausi voivat olla identtinen pari vain kerran.
 @Entity 
-@Table(name = "maksut", uniqueConstraints = @UniqueConstraint(columnNames = {"maksu_nimi", "maksu_kausi"})) //Tiedot ovat maksut taulussa. Maksun_nimi ja maksu_kausi voivat olla identtinen pari vain kerran myös JPA:n luodessa taulut.
+@Table(name = "maksut", uniqueConstraints = @UniqueConstraint(columnNames = {"maksu_nimi", "maksu_kausi"})) 
 public class Maksu {
 
     @Id //Pääavain

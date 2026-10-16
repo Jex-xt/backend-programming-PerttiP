@@ -1,5 +1,3 @@
-//admin@huittmp.test
-//user@huittmp.test
 package backend.huittmp.domain;
 
 import java.time.LocalDate;
@@ -25,10 +23,10 @@ import org.springframework.format.annotation.DateTimeFormat;
  * Vastaa tietokannan jasenet-taulua.
  */
 @Entity //JPA entiteetti
-@Table(name = "jasenet") //Tiedot ovat jasenet taulussa
+@Table(name = "jasenet")    //Vastaa tietokannan jasenet-taulua
 public class Jasen {
 
-    @Id 
+    @Id //Pääavain
     @GeneratedValue(strategy = GenerationType.IDENTITY) //id luodaan automaattisesti
     @Column(name = "jasen_id", nullable = false, updatable = false)
     private Long id;
@@ -57,7 +55,7 @@ public class Jasen {
     @NotNull(message = "Syötä liittymispäivä") 
     @PastOrPresent(message = "Liittymispäivä ei voi olla tulevaisuudessa")
     @Column (name = "liittymispaiva", nullable = false)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) //// Muuntaa lomakkeen yyyy-MM-dd päivämäärän LocalDate-tyypiksi
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) //// Muuntaa lomakkeen LocalDate-tyypiksi
     private LocalDate liittymispaiva;
 
     @Column(name = "salasana")
@@ -67,11 +65,11 @@ public class Jasen {
     private boolean yllapitaja;
 
     //OneToMany suhde hyödynnetään JUnit testissä
-    @OneToMany(mappedBy = "jasen")    // Yhdellä jäsenellä voi olla useita maksumerkintöjä. Suhde määritelty JasenMaksu-luokan jasen-kentässä.
+    // Yhdellä jäsenellä voi olla useita maksumerkintöjä
+    @OneToMany(mappedBy = "jasen")
     private List<JasenMaksu> jasenMaksut;
 
-
-    public Jasen () { //Parametriton konstrukstori JPA varten
+    public Jasen () { //Parametriton konstrukstori JPA:ta varten
     }
 
     public Jasen(String etunimi, String sukunimi, String email, String puhelinnumero, LocalDate liittymispaiva) { //Parametrillinen konstruktori
