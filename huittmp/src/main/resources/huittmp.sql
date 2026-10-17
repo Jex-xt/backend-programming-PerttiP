@@ -88,7 +88,7 @@ VALUES
 INSERT INTO jasenet (etunimi, sukunimi, email, puhelinnumero, liittymispaiva, salasana, yllapitaja)
 VALUES
 ('Testi', 'Admin', 'admin@example.fi', '0444444444','2026-10-16', '$2a$10$oeCGpLsuJi1bxB07ZA9gZ.r0F/fOs/32.lzbGYJI75uJA/bsmPkxG', TRUE),
-('Testi', 'User', 'user@example.fi', '0455555555','2026-10-16', '$2a$10$ufHyCSDPGKuv8/iiteY/PO.kjPDd0kQhmSe.LgZHoiMuB482rqBP2', FALSE);
+('Testi', 'User', 'user@example.fi', '0455555555','2023-03-15', '$2a$10$ufHyCSDPGKuv8/iiteY/PO.kjPDd0kQhmSe.LgZHoiMuB482rqBP2', FALSE);
 
 INSERT INTO jasen_roolit (jasen_id, rooli_id, alkupaiva, loppupaiva)
 VALUES
@@ -110,6 +110,13 @@ VALUES
 (6, 6, '2023-03-18', '2025-03-14'), --Kalle hallituksen varajäsen
 (7, 6, '2025-03-15', NULL), --Pekka hallituksen varajäsen
 (9, 5, '2026-03-15', NULL); --Sirpa hallituksen varsinainen jäsen
+
+--Testi Userin roolihistoria
+INSERT INTO jasen_roolit (jasen_id, rooli_id, alkupaiva, loppupaiva)
+VALUES
+(12, 6, '2023-03-18', '2024-03-14'), --Testi User Hallituksen varajäsen
+(12, 5, '2024-03-15', '2026-03-14'), --Testi User Hallituksen varsinainen jäsen
+(12, 6, '2026-03-15', NULL);         --Testi User Hallituksen varajäsen, nykyinen
 
 INSERT INTO jasen_maksut (jasen_id, maksu_id, maksettu, pyorien_maara)
 VALUES
@@ -179,3 +186,11 @@ VALUES
 (10, 1, FALSE, NULL),
 (10, 3, FALSE, 1),
 (10, 4, TRUE, NULL);
+
+--Testi Userin maksuhistoria
+INSERT INTO jasen_maksut (jasen_id, maksu_id, maksettu, pyorien_maara)
+VALUES
+(12, 1, TRUE, NULL),  --Jäsenmaksu 2027, maksettu
+(12, 2, FALSE, NULL), --Korjaamomaksu 2027, maksamatta
+(12, 3, TRUE, 1),     --Talvisäilytys 2026-2027, yksi pyörä
+(12, 4, TRUE, NULL);  --Jäsenmaksu 2026, maksettu
