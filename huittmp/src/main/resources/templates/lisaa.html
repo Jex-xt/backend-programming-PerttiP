@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- HuittMP:n uuden jäsenen lisäyslomake ylläpitäjälle -->
 <html
     lang="fi"
     xmlns:th="http://www.thymeleaf.org"
@@ -13,6 +14,11 @@
         <h1>HuittMP – Jäsenhallinta</h1>
         <h4>Lisää uusi jäsen</h4>
 
+        <!-- Uuden jäsenen lisäsys lomake.
+        Uuden jäsenen tiedot lähetetään AdminControllerille POST-pyynnöllä.
+        Selaimen automaattinen lomakevalidointi on poistettu käytöstä.
+        Validointi tehdään palvelimella @Valid annotaatiolla.
+        -->
         <form th:object="${jasen}" th:action="@{/admin/lisaa}" method="post" novalidate>
             <div class="mb-3">
                 <label for="etunimi" class="form-label">Etunimi:</label>
@@ -55,6 +61,7 @@
                 <div class="text-danger" th:errors="*{salasana}"></div>
             </div>
 
+            <!-- Linkki takaisin jäsenlistasivulle tai uuden jäsenen tietojen tallennus -->
             <div>
                 <a th:href="@{/admin}"class="btn btn-secondary">Peruuta</a>
 		        <button type="submit" class="btn btn-success">Tallenna uusi jäsen</button>

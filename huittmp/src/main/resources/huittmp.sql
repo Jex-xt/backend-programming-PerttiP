@@ -1,3 +1,5 @@
+--Skripti HuittMP-tietokannan taulujen ja datan lisämiseen PostgreSQL kantaan
+
 DROP TABLE IF EXISTS jasen_roolit;
 DROP TABLE IF EXISTS jasen_maksut;
 DROP TABLE IF EXISTS jasenet;

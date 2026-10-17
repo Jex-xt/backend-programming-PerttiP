@@ -1,3 +1,5 @@
+--H2-testitietokannan datan luontiskripti
+
 INSERT INTO roolit (rooli_nimi)
 VALUES
 ('Puheenjohtaja'),

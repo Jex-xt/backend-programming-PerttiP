@@ -1,3 +1,5 @@
+--H2-testitietokannan taulujen luontiskripti
+
 DROP TABLE IF EXISTS jasen_roolit;
 DROP TABLE IF EXISTS jasen_maksut;
 DROP TABLE IF EXISTS jasenet;

@@ -15,6 +15,8 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
 
+//SecurityTests-luokka testaa käyttäjien kirjautumista ja käyttöoikeuksien toimivuutta.
+//Testit suoritetaan H2-testitietokannalla
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")

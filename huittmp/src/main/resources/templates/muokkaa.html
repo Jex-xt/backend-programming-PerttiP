@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- HuittMP:n jäsenen tietojen muokkaus ja jäsenen poisto ylläpitäjälle -->
 <html
     lang="fi"
     xmlns:th="http://www.thymeleaf.org"
@@ -13,6 +14,10 @@
         <h1>HuittMP – Jäsenhallinta</h1>
         <h4>Jäsenen tietojen muokkaus</h4>
 
+    <!--
+    Jäsenen poistamisen painike AdminControllerin kautta POST-pyynnöllä.
+    Ennen poistamista näytetään vahvistusikkuna, jossa poistettavan jäsenen nimi.
+    -->
     <div class="text-end mb-3">    
         <form th:action="@{/admin/poista/{id}(id=${jasen.id})}"
             th:attr="data-nimi=|${jasen.etunimi} ${jasen.sukunimi}|"
@@ -22,7 +27,11 @@
         </form>
     </div>
     
-
+        <!-- jäsenen muokkaus lomake.
+        Muokatut jäsenen tiedot lähetetään AdminControllerille POST-pyynnöllä.
+        Selaimen automaattinen lomakevalidointi on poistettu käytöstä.
+        Validointi tehdään palvelimella @Valid annotaatiolla.
+        -->
         <form th:object="${jasen}" th:action="@{/admin/muokkaa/{id}(id=${jasen.id})}" method="post" novalidate>
             <div class="mb-3">
                 <label for="etunimi" class="form-label">Etunimi:</label>
@@ -33,7 +42,7 @@
             <div class="mb-3">
                 <label for="sukunimi" class="form-label">Sukunimi:</label>
                 <input type="text" id="sukunimi" th:field="*{sukunimi}" class="form-control">
-                <div class="text-danger" th:errors="*{sukunimi}"></div>
+                <div class="text-danger"th:errors="*{sukunimi}"></div>
             </div>
 
             <div class="mb-3">
@@ -54,6 +63,7 @@
                 <div class="text-danger" th:errors="*{liittymispaiva}"></div>
             </div>
 
+            <!-- Uuden salasanan syöttökenttä. Tyhjäksi jätettäessä jäsenen vanha salasana säilyy -->
             <div class="mb-3">
                 <label for="uusiSalasana" class="form-label">Uusi salasana:</label>
                 <input type="password" id="uusiSalasana" name="uusiSalasana" class="form-control">
@@ -61,12 +71,13 @@
                 <div class="text-danger" th:errors="*{salasana}"></div>
             </div>
 
-
+            <!-- Checkbox jäsenen ylläpitäjäoikeuksien muuttamiseen -->
             <div class="form-check mb-3">
                  <label for="yllapitaja" class="form-check-label">Ylläpitäjä:</label>
                  <input type="checkbox" id="yllapitaja" th:field="*{yllapitaja}" class="form-check-input">
             </div>
 
+            <!-- Linkki takaisin jäsenlistasivulle tai muokattujen tietojen tallennus -->
             <div>
                 <a th:href="@{/admin}"class="btn btn-secondary">Peruuta</a>
 		        <button type="submit" class="btn btn-success">Tallenna muutokset</button>

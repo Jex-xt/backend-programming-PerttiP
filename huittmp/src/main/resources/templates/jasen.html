@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- HuittMP:n jäsenen tietosivu ylläpitäjälle, jossa näytetään jäsenen perustiedot, maksut ja roolit -->
 <html
     lang="fi"
     xmlns:th="http://www.thymeleaf.org"
@@ -13,6 +14,7 @@
         <h1>HuittMP – Jäsenhallinta</h1>
         <h4 class="mb-5">Jäsenen tiedot</h4>
 
+        <!-- Html-taulukko jäsenen perustiedoille -->
         <table class="table table-striped">
             <tbody>
                 <tr>
@@ -52,6 +54,7 @@
 
         <h4>Jäsenen maksut</h4>
 
+        <!-- Html-taulukko jäsenen maksutapahtumille -->
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -62,6 +65,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- JasenMaksu lista käydään läpi ja luodaan jokaiselle maksutapahtumalle oma taulukkorivi -->
                 <tr th:each="jasenMaksu : ${jasenMaksut}">
                     <td th:text="${jasenMaksu.maksu.maksuNimi}"></td>
                     <td th:text="${jasenMaksu.maksu.maksuKausi}"></td>
@@ -82,6 +86,7 @@
 
         <h4>Jäsenen roolit</h4>
 
+        <!-- Html-taulukko jäsenen rooleille -->
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -91,6 +96,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- JasenRoolit lista käydään läpi ja luodaan jokaiselle roolille oma taulukkorivi -->
                 <tr th:each="jasenRooli : ${jasenRoolit}">
                 <td th:text="${jasenRooli.rooli.rooliNimi}"></td>
                 <td th:text="${#temporals.format(jasenRooli.alkupaiva, 'd.M.yyyy')}"></td>
@@ -102,6 +108,7 @@
                 </tr>
             </tbody>
         </table>
+        <!-- Linkit takaisin jäsenlistasivulle tai jäsenen tietojen muokkaussivulle -->
         <div class="mt-4">     
             <a th:href="@{/admin}" class="btn btn-secondary">Jäsenlista</a>
             <a th:href="@{/admin/muokkaa/{id}(id=${jasen.id})}" class="btn btn-primary">Muokkaa</a>
