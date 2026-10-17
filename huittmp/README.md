@@ -18,4 +18,3 @@ Sovelluksessa hallitaan yhdistyksen jäsenten perustietoja sekä erilaisten maks
 
 ## Sovellus
 https://huittmp-bookstore.2.rahtiapp.fi/login
-git
