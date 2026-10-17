@@ -36,6 +36,12 @@ public class AdminController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    //Ohjaa juuriosoitteen kirjautumiseen
+    @GetMapping("/")
+    public String ohjaus() {
+    return "redirect:/login";
+    }
+
     //Näyttää login.html-kirjautumissivun.
     @GetMapping("/login")
     public String login() {
